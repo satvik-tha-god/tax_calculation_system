@@ -1,0 +1,112 @@
+<center>
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Calculate your Income Tax</title>
+
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+    <div>
+      <a style="color: antiquewhite; text-decoration: none; " href="/">TAX MANAGEMENT SYSTEM</a>
+      <% if(user) { %>
+        <button type="submit" class="btn btn-outline-success m-1"
+          style="width:10%;height:40px; position: relative; left:400px;"><a href="/logout"
+            style="text-decoration: none;">LogOut</a></button>
+        <% } else { %>
+          <button type="submit" class="btn btn-outline-success m-1"
+            style="width:10%;height:40px;  position: relative; left:400px;"><a href="/login"
+              style="text-decoration: none;"> Login</a></button>
+          <% } %>
+          <button type="submit" class="btn btn-outline-success m-1"
+            style="width:10%;height:40px;"><a href="/history"
+              style="text-decoration: none;"> History</a></button>
+    </div>
+    <div style="background-image: url('images/tax_c.jpg'); width:100%;">
+      <h1 style="text-align:center;"> INCOME TAX CALCULATOR </h1>
+      <p>The rules followed in evaluating the amount can be read in detail <a
+          href="https://cleartax.in/s/income-tax">here.</a></p>
+      <form action="/main" method="post">
+        <label>
+          <h2 style="font-size:200%;">Your income </h2>
+        </label>
+        <br></br>
+        <input type="number" min="0" id="income" name="income" placeholder=" Enter your income" />
+        <br></br>
+        <label>
+          <h2 style="font-size:200%;">Are you a salaried employee?</h2>
+        </label>
+        <input type="checkbox" name = "salaried" value="YES" />
+        <label for="Income"> YES </label><br>
+        <br></br>
+        <input type="checkbox" name = "notSalaried" value="NO">
+        <label for="Income"> NO </label><br>
+        <label>
+          <h2 style="font-size:200%;">Deduction under section 80C</h2>
+        </label>
+        <p> It allows a maximum deduction of Rs 1.5 lakh every year from the taxpayers total income.
+          The benefit of this deduction can be availed by Individuals and HUFs. Companies, partnership firms, LLPs
+          cannot avail the benefit of this deduction. Read more about it <a
+            href="https://cleartax.in/s/80c-80-deductions">here.</a></p>
+        <input type="number" min="0" max="12500" id="deductionC" name="deductionC"
+          placeholder=" Your contribution to National Pension System and other expenses...(" NPS"). Deductions upto
+          12,500" />
+        <label>
+          <h2 style="font-size:200%;">Deduction under section 80D</h2>
+        </label>
+        <p>Every individual or HUF can claim a deduction from their total income under section 80D for medical insurance
+          premium paid in any given year.Read more about it <a href="https://cleartax.in/s/medical-insurance">here.</a>
+        </p>
+        <input type="number" min="0" max="2084" id="deductionD" name="deductionD" placeholder="INCLUDES: health insurance
+  Max deduction ₹2084" />
+        <label>
+          <h2 style="font-size:200%;">Deduction under Section 80E</h2>
+        </label>
+        <p>The loan should be taken for the higher education of self, spouse or children or for a student for whom the
+          individual is a legal guardian. Read more about it <a
+            href="https://cleartax.in/s/section-80e-deduction-interest-education-loan">here</a></p>
+        <input type="number" min="0" id="deductionE" name="deductionE"
+          placeholder="Interest paid on education loan. No limit on Maximum deduction" />
+        <label>
+          <h2 style="font-size:200%;">Other deductions</h2>
+        </label>
+        <p>Read more about it <a href="https://cleartax.in/s/income-tax">here</a></p>
+        <input type="number" id="otherDeductions" name="otherDeductions" placeholder="Enter amount" />
+        <br>
+        <button type="submit"> Submit and Calculate</button>
+      </form>
+      <br>
+      <label>
+        <h2 style="font-size:200%;">Your Income Tax is :</h2>
+      </label>
+      <br></br>
+      <p>
+        Tax under option 1, with all deductions
+      </p>
+      <input type=text id=tax name=tax placeholder="<%= tax1 %>" readonly />
+      <script src=https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js></script>
+      <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js></script>
+
+      <script>$(document).ready(function () { $("#submit").click(function () { var a = 0; var b = $("#income").val(); if (b <= 250000) { a = 0 } if (b > 250000 && b <= 500000) { a = (b - 250000) * 10 / 100 } if (b > 500000 && b <= 1000000) { a = 25000 + ((b - 500000) * 20 / 100) } if (b > 1000000) { a = (25000 + 100000) + ((b - 1000000) * 30 / 100) } $("#tax").val(a) }) });</script>
+
+      <br></br>
+      <p>Tax under Section 115BAC(different slab rates and no deductions). Read more about it <a
+          href="https://cleartax.in/s/section-115bac-features-new-tax-regime-benefits">here.</a></p>
+      <input type=text id=tax name=tax placeholder="<%= tax2 %>" readonly />
+      <script src=https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js></script>
+      <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js></script>
+      <script>$(document).ready(function () { $("#submit").click(function () { var a = 0; var b = $("#income").val(); if (b <= 250000) { a = 0 } if (b > 250000 && b <= 500000) { a = (b - 250000) * 10 / 100 } if (b > 500000 && b <= 1000000) { a = 25000 + ((b - 500000) * 20 / 100) } if (b > 1000000) { a = (25000 + 100000) + ((b - 1000000) * 30 / 100) } $("#tax").val(a) }) });</script>
+      <p>Lowest among the two is:</p>
+      <input type=text id=tax name=tax placeholder="<%= minTax %>" readonly />
+      <script src=https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js></script>
+      <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js></script>
+
+      <script>$(document).ready(function () { $("#submit").click(function () { var a = 0; var b = $("#income").val(); if (b <= 250000) { a = 0 } if (b > 250000 && b <= 500000) { a = (b - 250000) * 10 / 100 } if (b > 500000 && b <= 1000000) { a = 25000 + ((b - 500000) * 20 / 100) } if (b > 1000000) { a = (25000 + 100000) + ((b - 1000000) * 30 / 100) } $("#tax").val(a) }) });</script>
+  </body>
+
+  </html>
